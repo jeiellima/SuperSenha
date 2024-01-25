@@ -8,13 +8,173 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    var lbPassAmount: UILabel!
+    var tfPassAmount: UITextField!
+    var lbTotalChar: UILabel!
+    var tfTotalChar: UITextField!
+    var lbLowerCase: UILabel!
+    var swLowerCase: UISwitch!
+    var lbUpperCase: UILabel!
+    var swUpperCase: UISwitch!
+    var lbNumbers: UILabel!
+    var swNumbers: UISwitch!
+    var lbSpecialChar: UILabel!
+    var swSpecialChar: UISwitch!
+    var btGenerate: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        setupView()
+        setupConstraints()
     }
 
-
+    func setupView() {
+        navigationItem.title = "Gerador de Senhas"
+        view.backgroundColor = .systemGray
+        
+        lbPassAmount = UILabel()
+        lbPassAmount.translatesAutoresizingMaskIntoConstraints = false
+        lbPassAmount.text = "Quantidade de Senhas"
+        lbPassAmount.font = .systemFont(ofSize: 23)
+        view.addSubview(lbPassAmount)
+        
+        tfPassAmount = UITextField()
+        tfPassAmount.translatesAutoresizingMaskIntoConstraints = false
+        tfPassAmount.backgroundColor = .white
+        tfPassAmount.textAlignment = .center
+        tfPassAmount.layer.cornerRadius = 10
+        view.addSubview(tfPassAmount)
+        
+        lbTotalChar = UILabel()
+        lbTotalChar.translatesAutoresizingMaskIntoConstraints = false
+        lbTotalChar.text = "Total de Caracteres"
+        lbTotalChar.font = .systemFont(ofSize: 23)
+        view.addSubview(lbTotalChar)
+        
+        tfTotalChar = UITextField()
+        tfTotalChar.translatesAutoresizingMaskIntoConstraints = false
+        tfTotalChar.backgroundColor = .white
+        tfTotalChar.placeholder = "máx. 16"
+        tfTotalChar.textAlignment = .center
+        tfTotalChar.layer.cornerRadius = 10
+        view.addSubview(tfTotalChar)
+        
+        lbLowerCase = UILabel()
+        lbLowerCase.translatesAutoresizingMaskIntoConstraints = false
+        lbLowerCase.text = "Usar letras minúsculas"
+        lbLowerCase.font = .systemFont(ofSize: 23)
+        view.addSubview(lbLowerCase)
+        
+        swLowerCase = UISwitch()
+        swLowerCase.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(swLowerCase)
+        
+        lbUpperCase = UILabel()
+        lbUpperCase.translatesAutoresizingMaskIntoConstraints = false
+        lbUpperCase.text = "Usar letras maiúsculas"
+        lbUpperCase.font = .systemFont(ofSize: 23)
+        view.addSubview(lbUpperCase)
+        
+        swUpperCase = UISwitch()
+        swUpperCase.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(swUpperCase)
+        
+        lbNumbers = UILabel()
+        lbNumbers.translatesAutoresizingMaskIntoConstraints = false
+        lbNumbers.text = "Usar números"
+        lbNumbers.font = .systemFont(ofSize: 23)
+        view.addSubview(lbNumbers)
+        
+        swNumbers = UISwitch()
+        swNumbers.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(swNumbers)
+        
+        lbSpecialChar = UILabel()
+        lbSpecialChar.translatesAutoresizingMaskIntoConstraints = false
+        lbSpecialChar.text = "Usar caracteres especiais"
+        lbSpecialChar.font = .systemFont(ofSize: 23)
+        view.addSubview(lbSpecialChar)
+        
+        swSpecialChar = UISwitch()
+        swSpecialChar.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(swSpecialChar)
+        
+        btGenerate = UIButton()
+        btGenerate.translatesAutoresizingMaskIntoConstraints = false
+        btGenerate.setTitle("Gerar senhas", for: .normal)
+        btGenerate.titleLabel?.font = .systemFont(ofSize: 22)
+        btGenerate.setTitleColor(.white, for: .normal)
+        btGenerate.backgroundColor = .black
+        btGenerate.addTarget(self, action: #selector(passGenerator), for: .touchUpInside)
+        btGenerate.tag = 1
+        btGenerate.layer.cornerRadius = 10
+        view.addSubview(btGenerate)
+    }
+    
+    func setupConstraints() {
+        NSLayoutConstraint.activate([
+            lbPassAmount.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
+            lbPassAmount.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+            lbPassAmount.trailingAnchor.constraint(equalTo: tfPassAmount.leadingAnchor),
+            
+            tfPassAmount.centerYAnchor.constraint(equalTo: lbPassAmount.centerYAnchor),
+            tfPassAmount.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+            tfPassAmount.widthAnchor.constraint(equalToConstant: 100),
+            tfPassAmount.heightAnchor.constraint(equalToConstant: 45),
+            
+            lbTotalChar.topAnchor.constraint(equalTo: lbPassAmount.bottomAnchor, constant: 30),
+            lbTotalChar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+            lbTotalChar.trailingAnchor.constraint(equalTo: tfTotalChar.leadingAnchor),
+            
+            tfTotalChar.leadingAnchor.constraint(equalTo: lbTotalChar.trailingAnchor),
+            tfTotalChar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+            tfTotalChar.centerYAnchor.constraint(equalTo: lbTotalChar.centerYAnchor),
+            tfTotalChar.widthAnchor.constraint(equalToConstant: 100),
+            tfTotalChar.heightAnchor.constraint(equalToConstant: 45),
+            
+            lbLowerCase.topAnchor.constraint(equalTo: lbTotalChar.bottomAnchor, constant: 30),
+            lbLowerCase.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+            lbLowerCase.trailingAnchor.constraint(equalTo: swLowerCase.leadingAnchor),
+            
+            swLowerCase.centerYAnchor.constraint(equalTo: lbLowerCase.centerYAnchor),
+            swLowerCase.centerXAnchor.constraint(equalTo: tfTotalChar.centerXAnchor, constant: 12),
+            swLowerCase.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+            
+            lbUpperCase.topAnchor.constraint(equalTo: lbLowerCase.bottomAnchor, constant: 30),
+            lbUpperCase.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+            lbUpperCase.trailingAnchor.constraint(equalTo: swUpperCase.leadingAnchor),
+            
+            swUpperCase.centerYAnchor.constraint(equalTo: lbUpperCase.centerYAnchor),
+            swUpperCase.centerXAnchor.constraint(equalTo: tfTotalChar.centerXAnchor, constant: 12),
+            swUpperCase.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+            
+            lbNumbers.topAnchor.constraint(equalTo: lbUpperCase.bottomAnchor, constant: 30),
+            lbNumbers.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+            lbNumbers.trailingAnchor.constraint(equalTo: swNumbers.leadingAnchor),
+            
+            swNumbers.centerYAnchor.constraint(equalTo: lbNumbers.centerYAnchor),
+            swNumbers.centerXAnchor.constraint(equalTo: tfTotalChar.centerXAnchor, constant: 12),
+            swNumbers.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+            
+            lbSpecialChar.topAnchor.constraint(equalTo: lbNumbers.bottomAnchor, constant: 30),
+            lbSpecialChar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+            lbSpecialChar.trailingAnchor.constraint(equalTo: swSpecialChar.leadingAnchor),
+            
+            swSpecialChar.centerYAnchor.constraint(equalTo: lbSpecialChar.centerYAnchor),
+            swSpecialChar.centerXAnchor.constraint(equalTo: tfTotalChar.centerXAnchor, constant: 12),
+            swSpecialChar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+            
+            btGenerate.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            btGenerate.topAnchor.constraint(equalTo: lbSpecialChar.bottomAnchor, constant: 50),
+            btGenerate.widthAnchor.constraint(equalToConstant: 150),
+            btGenerate.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
+    @objc func passGenerator() {
+        
+    }
 }
 
 
