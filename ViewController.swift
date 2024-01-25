@@ -22,6 +22,7 @@ class ViewController: UIViewController {
     var lbSpecialChar: UILabel!
     var swSpecialChar: UISwitch!
     var btGenerate: UIButton!
+    var mainColor = UIColor(red: 152.0/255.0, green: 36.0/255.0, blue: 101.0/255.0, alpha: 1)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,11 +32,11 @@ class ViewController: UIViewController {
 
     func setupView() {
         navigationItem.title = "Gerador de Senhas"
-        view.backgroundColor = .systemGray
         
         lbPassAmount = UILabel()
         lbPassAmount.translatesAutoresizingMaskIntoConstraints = false
-        lbPassAmount.text = "Quantidade de Senhas"
+        lbPassAmount.text = "Quantidade de senhas"
+        lbPassAmount.textColor = mainColor
         lbPassAmount.font = .systemFont(ofSize: 23)
         view.addSubview(lbPassAmount)
         
@@ -44,11 +45,14 @@ class ViewController: UIViewController {
         tfPassAmount.backgroundColor = .white
         tfPassAmount.textAlignment = .center
         tfPassAmount.layer.cornerRadius = 10
+        tfPassAmount.layer.borderWidth = 0.8
+        tfPassAmount.layer.borderColor = mainColor.cgColor
         view.addSubview(tfPassAmount)
         
         lbTotalChar = UILabel()
         lbTotalChar.translatesAutoresizingMaskIntoConstraints = false
-        lbTotalChar.text = "Total de Caracteres"
+        lbTotalChar.text = "Total de caracteres"
+        lbTotalChar.textColor = mainColor
         lbTotalChar.font = .systemFont(ofSize: 23)
         view.addSubview(lbTotalChar)
         
@@ -58,46 +62,56 @@ class ViewController: UIViewController {
         tfTotalChar.placeholder = "máx. 16"
         tfTotalChar.textAlignment = .center
         tfTotalChar.layer.cornerRadius = 10
+        tfTotalChar.layer.borderWidth = 0.8
+        tfTotalChar.layer.borderColor = mainColor.cgColor
         view.addSubview(tfTotalChar)
         
         lbLowerCase = UILabel()
         lbLowerCase.translatesAutoresizingMaskIntoConstraints = false
         lbLowerCase.text = "Usar letras minúsculas"
+        lbLowerCase.textColor = mainColor
         lbLowerCase.font = .systemFont(ofSize: 23)
         view.addSubview(lbLowerCase)
         
         swLowerCase = UISwitch()
         swLowerCase.translatesAutoresizingMaskIntoConstraints = false
+        swLowerCase.onTintColor = mainColor
         view.addSubview(swLowerCase)
         
         lbUpperCase = UILabel()
         lbUpperCase.translatesAutoresizingMaskIntoConstraints = false
         lbUpperCase.text = "Usar letras maiúsculas"
+        lbUpperCase.textColor = mainColor
         lbUpperCase.font = .systemFont(ofSize: 23)
         view.addSubview(lbUpperCase)
         
         swUpperCase = UISwitch()
         swUpperCase.translatesAutoresizingMaskIntoConstraints = false
+        swUpperCase.onTintColor = mainColor
         view.addSubview(swUpperCase)
         
         lbNumbers = UILabel()
         lbNumbers.translatesAutoresizingMaskIntoConstraints = false
         lbNumbers.text = "Usar números"
+        lbNumbers.textColor = mainColor
         lbNumbers.font = .systemFont(ofSize: 23)
         view.addSubview(lbNumbers)
         
         swNumbers = UISwitch()
         swNumbers.translatesAutoresizingMaskIntoConstraints = false
+        swNumbers.onTintColor = mainColor
         view.addSubview(swNumbers)
         
         lbSpecialChar = UILabel()
         lbSpecialChar.translatesAutoresizingMaskIntoConstraints = false
         lbSpecialChar.text = "Usar caracteres especiais"
+        lbSpecialChar.textColor = mainColor
         lbSpecialChar.font = .systemFont(ofSize: 23)
         view.addSubview(lbSpecialChar)
         
         swSpecialChar = UISwitch()
         swSpecialChar.translatesAutoresizingMaskIntoConstraints = false
+        swSpecialChar.onTintColor = mainColor
         view.addSubview(swSpecialChar)
         
         btGenerate = UIButton()
@@ -105,7 +119,7 @@ class ViewController: UIViewController {
         btGenerate.setTitle("Gerar senhas", for: .normal)
         btGenerate.titleLabel?.font = .systemFont(ofSize: 22)
         btGenerate.setTitleColor(.white, for: .normal)
-        btGenerate.backgroundColor = .black
+        btGenerate.backgroundColor = mainColor
         btGenerate.addTarget(self, action: #selector(passGenerator), for: .touchUpInside)
         btGenerate.tag = 1
         btGenerate.layer.cornerRadius = 10
