@@ -25,6 +25,7 @@ class TipsViewController: UIViewController {
         topLabel = UILabel()
         topLabel.translatesAutoresizingMaskIntoConstraints = false
         topLabel.text = "10 dicas para ter uma senha forte"
+        topLabel.font = .systemFont(ofSize: 23)
         topLabel.textColor = mainColor
         view.addSubview(topLabel)
         
@@ -61,17 +62,36 @@ class TipsViewController: UIViewController {
         10.  Se você achar que é difícil lembrar-se de várias senhas complexas, considere a instalação de um gerenciadores de senhas
         Há diversos programas disponíveis que armazenam os dados de maneira segura e ajudam os mais esquecidos.
         """
+        tipsTextView.textColor = .black
+        tipsTextView.font = .systemFont(ofSize: 18)
         view.addSubview(tipsTextView)
         
         dismissButton = UIButton()
         dismissButton.translatesAutoresizingMaskIntoConstraints = false
         dismissButton.setTitle("fechar", for: .normal)
+        dismissButton.setTitleColor(mainColor, for: .normal)
         view.addSubview(dismissButton)
         
     }
     
     func setupConstraints() {
-        
+        NSLayoutConstraint.activate([
+            
+            topLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            topLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 15),
+            
+            tipsTextView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            tipsTextView.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: 20),
+            tipsTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+            tipsTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+            tipsTextView.bottomAnchor.constraint(equalTo: dismissButton.topAnchor, constant: -20),
+            
+            dismissButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -5),
+            dismissButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            
+            
+            
+        ])
     }
 }
 

@@ -48,7 +48,7 @@ class ListViewController: UIViewController {
         tipsButton.titleLabel?.font = .systemFont(ofSize: 18)
         tipsButton.setTitleColor(.yellow, for: .normal)
         tipsButton.tag = 1
-        //tipsButton.addTarget(self, action: #selector(<#T##@objc method#>), for: .touchUpInside)
+//        tipsButton.addTarget(self, action: #selector(<#T##@objc method#>), for: .touchUpInside) // Present Modally
         view.addSubview(tipsButton)
     }
     
