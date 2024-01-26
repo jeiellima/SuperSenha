@@ -22,16 +22,28 @@ class ViewController: UIViewController {
     var lbSpecialChar: UILabel!
     var swSpecialChar: UISwitch!
     var btGenerate: UIButton!
+//    var topLabel: UILabel!
+
+
     var mainColor = UIColor(red: 152.0/255.0, green: 36.0/255.0, blue: 101.0/255.0, alpha: 1)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setupConstraints()
+        
     }
 
     func setupView() {
-        navigationItem.title = "Gerador de Senhas"
+        
+//        topLabel = UILabel()
+//        topLabel.translatesAutoresizingMaskIntoConstraints = false
+//        topLabel.text = "Gerador de Senhas"
+//        topLabel.font = .systemFont(ofSize: 30)
+//        topLabel.backgroundColor = .red
+//        view.addSubview(topLabel)
+    
+        
         
         lbPassAmount = UILabel()
         lbPassAmount.translatesAutoresizingMaskIntoConstraints = false
@@ -128,7 +140,14 @@ class ViewController: UIViewController {
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            lbPassAmount.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
+            
+//            topLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            topLabel.heightAnchor.constraint(equalToConstant: 50),
+//            topLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+//            topLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            topLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            lbPassAmount.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: 35),
             lbPassAmount.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
             lbPassAmount.trailingAnchor.constraint(equalTo: tfPassAmount.leadingAnchor),
             

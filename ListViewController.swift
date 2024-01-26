@@ -103,8 +103,8 @@ class ListViewController: UIViewController {
     @objc func tipsView(sender: UIButton!) {
         let btnsendtag: UIButton = sender
         if btnsendtag.tag == 1 {
-//            let quizViewController = QuizViewController()
-//            navigationController?.pushViewController(quizViewController, animated: true)
+            let tipsViewController = TipsViewController()
+            navigationController?.present(tipsViewController, animated: true, completion: nil)
         }
     }
 }
