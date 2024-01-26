@@ -26,11 +26,14 @@ class ListViewController: UIViewController {
         
         passwordText = UITextView()
         passwordText.translatesAutoresizingMaskIntoConstraints = false
+        passwordText.backgroundColor = .white
+        passwordText.isEditable = false
+        passwordText.isSelectable = true
         view.addSubview(passwordText)
         
         btGenerate = UIButton()
         btGenerate.translatesAutoresizingMaskIntoConstraints = false
-        btGenerate.setTitle("Gerar senhas", for: .normal)
+        btGenerate.setTitle("Gerar novamente", for: .normal)
         btGenerate.titleLabel?.font = .systemFont(ofSize: 22)
         btGenerate.setTitleColor(mainColor, for: .normal)
         btGenerate.backgroundColor = .white
@@ -41,7 +44,8 @@ class ListViewController: UIViewController {
         
         tipsButton = UIButton()
         tipsButton.translatesAutoresizingMaskIntoConstraints = false
-        tipsButton.setTitle("Dicas de segurança ⓘ", for: .normal)
+        tipsButton.setTitle("Dicas sobre segurança ⓘ", for: .normal)
+        tipsButton.titleLabel?.font = .systemFont(ofSize: 18)
         tipsButton.setTitleColor(.yellow, for: .normal)
         tipsButton.tag = 1
         //tipsButton.addTarget(self, action: #selector(<#T##@objc method#>), for: .touchUpInside)
@@ -51,11 +55,17 @@ class ListViewController: UIViewController {
     func setupConstraints() {
         NSLayoutConstraint.activate([
             
+            passwordText.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            passwordText.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -40),
+            passwordText.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            passwordText.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            passwordText.widthAnchor.constraint(equalToConstant: 350),
+            passwordText.heightAnchor.constraint(equalToConstant: 465),
             
-            
-            btGenerate.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            btGenerate.widthAnchor.constraint(equalToConstant: 200),
-            btGenerate.heightAnchor.constraint(equalToConstant: 80),
+            btGenerate.centerXAnchor.constraint(equalTo: passwordText.centerXAnchor),
+            btGenerate.topAnchor.constraint(equalTo: passwordText.bottomAnchor, constant: 35),
+            btGenerate.widthAnchor.constraint(equalToConstant: 250),
+            btGenerate.heightAnchor.constraint(equalToConstant: 70),
             
             tipsButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -15),
             tipsButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
@@ -64,43 +74,43 @@ class ListViewController: UIViewController {
 
 }
 
-// MARK: - Preview
-
-#if canImport(SwiftUI) && DEBUG
-import SwiftUI
-struct UIViewControllerPreview<ListViewController: UIViewController>: UIViewControllerRepresentable {
-    let viewController: ListViewController
-
-    init(_ builder: @escaping () -> ListViewController) {
-        viewController = builder()
-    }
-    func makeUIViewController(context: Context) -> ListViewController {
-        viewController
-    }
-
-    func updateUIViewController(_ uiViewController: ListViewController, context: UIViewControllerRepresentableContext<UIViewControllerPreview<ListViewController>>) {
-        return
-    }
-}
-#endif
-
-#if canImport(SwiftUI) && DEBUG
-import SwiftUI
-
-let deviceNames: [String] = [
-    "iPhone 11 Pro Max",
-]
-
-@available(iOS 13.0, *)
-struct ViewController_Preview: PreviewProvider {
-  static var previews: some View {
-    ForEach(deviceNames, id: \.self) { deviceName in
-      UIViewControllerPreview {
-          ListViewController()
-      }.previewDevice(PreviewDevice(rawValue: deviceName))
-        .previewDisplayName(deviceName)
-    }
-  }
-}
-
-#endif
+//// MARK: - Preview
+//
+//#if canImport(SwiftUI) && DEBUG
+//import SwiftUI
+//struct UIViewControllerPreview<ListViewController: UIViewController>: UIViewControllerRepresentable {
+//    let viewController: ListViewController
+//
+//    init(_ builder: @escaping () -> ListViewController) {
+//        viewController = builder()
+//    }
+//    func makeUIViewController(context: Context) -> ListViewController {
+//        viewController
+//    }
+//
+//    func updateUIViewController(_ uiViewController: ListViewController, context: UIViewControllerRepresentableContext<UIViewControllerPreview<ListViewController>>) {
+//        return
+//    }
+//}
+//#endif
+//
+//#if canImport(SwiftUI) && DEBUG
+//import SwiftUI
+//
+//let deviceNames: [String] = [
+//    "iPhone 11 Pro Max",
+//]
+//
+//@available(iOS 13.0, *)
+//struct ViewController_Preview: PreviewProvider {
+//  static var previews: some View {
+//    ForEach(deviceNames, id: \.self) { deviceName in
+//      UIViewControllerPreview {
+//          ListViewController()
+//      }.previewDevice(PreviewDevice(rawValue: deviceName))
+//        .previewDisplayName(deviceName)
+//    }
+//  }
+//}
+//
+//#endif

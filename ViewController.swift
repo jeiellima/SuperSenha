@@ -181,7 +181,7 @@ class ViewController: UIViewController {
             
             btGenerate.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             btGenerate.topAnchor.constraint(equalTo: lbSpecialChar.bottomAnchor, constant: 50),
-            btGenerate.widthAnchor.constraint(equalToConstant: 200),
+            btGenerate.widthAnchor.constraint(equalToConstant: 250),
             btGenerate.heightAnchor.constraint(equalToConstant: 70)
         ])
     }
