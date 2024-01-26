@@ -12,6 +12,13 @@ class ListViewController: UIViewController {
     var btGenerate: UIButton!
     var passwordText: UITextView!
     
+    var numberOfChar: Int = 10
+    var numberOfPass: Int = 1
+    var useLower: Bool!
+    var useUpper: Bool!
+    var useNumbers: Bool!
+    var useSpecialChar: Bool!
+    
     var mainColor = UIColor(red: 152.0/255.0, green: 36.0/255.0, blue: 101.0/255.0, alpha: 1)
     
 
@@ -37,7 +44,7 @@ class ListViewController: UIViewController {
         btGenerate.titleLabel?.font = .systemFont(ofSize: 22)
         btGenerate.setTitleColor(mainColor, for: .normal)
         btGenerate.backgroundColor = .white
-        //btGenerate.addTarget(self, action: #selector(passGenerator), for: .touchUpInside)
+        btGenerate.addTarget(self, action: #selector(generate), for: .touchUpInside)
         btGenerate.tag = 1
         btGenerate.layer.cornerRadius = 10
         view.addSubview(btGenerate)
@@ -48,7 +55,7 @@ class ListViewController: UIViewController {
         tipsButton.titleLabel?.font = .systemFont(ofSize: 18)
         tipsButton.setTitleColor(.yellow, for: .normal)
         tipsButton.tag = 1
-//        tipsButton.addTarget(self, action: #selector(<#T##@objc method#>), for: .touchUpInside) // Present Modally
+        tipsButton.addTarget(self, action: #selector(tipsView), for: .touchUpInside) // Present Modally
         view.addSubview(tipsButton)
     }
     
@@ -71,7 +78,22 @@ class ListViewController: UIViewController {
             tipsButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
         ])
     }
-
+    
+    @objc func generate(sender: UIButton!) {
+        let btnsendtag: UIButton = sender
+        if btnsendtag.tag == 1 {
+//            let quizViewController = QuizViewController()
+//            navigationController?.pushViewController(quizViewController, animated: true)
+        }
+    }
+    
+    @objc func tipsView(sender: UIButton!) {
+        let btnsendtag: UIButton = sender
+        if btnsendtag.tag == 1 {
+//            let quizViewController = QuizViewController()
+//            navigationController?.pushViewController(quizViewController, animated: true)
+        }
+    }
 }
 
 //// MARK: - Preview

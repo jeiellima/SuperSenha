@@ -70,6 +70,7 @@ class TipsViewController: UIViewController {
         dismissButton.translatesAutoresizingMaskIntoConstraints = false
         dismissButton.setTitle("fechar", for: .normal)
         dismissButton.setTitleColor(mainColor, for: .normal)
+        dismissButton.addTarget(self, action: #selector(close), for: .touchUpInside)
         view.addSubview(dismissButton)
         
     }
@@ -88,10 +89,15 @@ class TipsViewController: UIViewController {
             
             dismissButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -5),
             dismissButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            
-            
-            
+ 
         ])
+    }
+    
+    @objc func close(sender: UIButton!) {
+        let btnsendtag: UIButton = sender
+        if btnsendtag.tag == 1 {
+            dismiss(animated: true, completion: nil)
+        }
     }
 }
 

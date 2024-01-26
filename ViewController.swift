@@ -186,8 +186,16 @@ class ViewController: UIViewController {
         ])
     }
     
-    @objc func passGenerator() {
-        
+    @objc func passGenerator(sender: UIButton!) {
+        let btnsendtag: UIButton = sender
+        if btnsendtag.tag == 1 {
+            let listViewController = ListViewController()
+            navigationController?.pushViewController(listViewController, animated: true)
+            
+            if let numberOfPasswords = Int(tfPassAmount.text!) {
+                listViewController.numberOfPass = numberOfPasswords
+            }
+        }
     }
 }
 
