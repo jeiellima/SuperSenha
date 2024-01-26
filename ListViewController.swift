@@ -19,6 +19,8 @@ class ListViewController: UIViewController {
     var useNumbers: Bool!
     var useSpecialChar: Bool!
     
+    var passwordGenerator: PasswordGenerator!
+    
     var mainColor = UIColor(red: 152.0/255.0, green: 36.0/255.0, blue: 101.0/255.0, alpha: 1)
     
 
@@ -26,10 +28,13 @@ class ListViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         setupConstraints()
+        generatePasswords()
     }
     
     func setupView() {
         view.backgroundColor = mainColor
+        title = "Total de senhas: \(numberOfPass)"
+        passwordGenerator = PasswordGenerator(numberOfChar: numberOfChar, useLower: useLower, useUpper: useUpper, useNumber: useNumbers, useSpecialChar: useSpecialChar)
         
         passwordText = UITextView()
         passwordText.translatesAutoresizingMaskIntoConstraints = false
@@ -79,11 +84,19 @@ class ListViewController: UIViewController {
         ])
     }
     
+    func generatePasswords() {
+        let passwords = passwordGenerator.generate(total: numberOfPass)
+        for password in passwords {
+            passwordText.text.append(password + "\n\n")
+        }
+    }
+    
     @objc func generate(sender: UIButton!) {
         let btnsendtag: UIButton = sender
         if btnsendtag.tag == 1 {
-//            let quizViewController = QuizViewController()
-//            navigationController?.pushViewController(quizViewController, animated: true)
+            passwordText.scrollsToTop = true
+            passwordText.text = ""
+            generatePasswords()
         }
     }
     

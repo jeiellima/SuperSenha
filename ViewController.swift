@@ -195,6 +195,16 @@ class ViewController: UIViewController {
             if let numberOfPasswords = Int(tfPassAmount.text!) {
                 listViewController.numberOfPass = numberOfPasswords
             }
+            
+            if let numberOfCharacters = Int(tfTotalChar.text!) {
+                listViewController.numberOfChar = numberOfCharacters
+            }
+            
+            listViewController.useLower = swLowerCase.isOn
+            listViewController.useUpper = swUpperCase.isOn
+            listViewController.useNumbers = swNumbers.isOn
+            listViewController.useSpecialChar = swSpecialChar.isOn
+            view.endEditing(true)
         }
     }
 }
