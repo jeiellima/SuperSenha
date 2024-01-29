@@ -103,41 +103,41 @@ class TipsViewController: UIViewController {
 
 // MARK: - Preview
 
-#if canImport(SwiftUI) && DEBUG
-import SwiftUI
-struct UIViewControllerPreview<TipsViewController: UIViewController>: UIViewControllerRepresentable {
-    let viewController: TipsViewController
-
-    init(_ builder: @escaping () -> TipsViewController) {
-        viewController = builder()
-    }
-    func makeUIViewController(context: Context) -> TipsViewController {
-        viewController
-    }
-
-    func updateUIViewController(_ uiViewController: TipsViewController, context: UIViewControllerRepresentableContext<UIViewControllerPreview<TipsViewController>>) {
-        return
-    }
-}
-#endif
-
-#if canImport(SwiftUI) && DEBUG
-import SwiftUI
-
-let deviceNames: [String] = [
-    "iPhone 11 Pro Max",
-]
-
-@available(iOS 13.0, *)
-struct ViewController_Preview: PreviewProvider {
-  static var previews: some View {
-    ForEach(deviceNames, id: \.self) { deviceName in
-      UIViewControllerPreview {
-          TipsViewController()
-      }.previewDevice(PreviewDevice(rawValue: deviceName))
-        .previewDisplayName(deviceName)
-    }
-  }
-}
-
-#endif
+//#if canImport(SwiftUI) && DEBUG
+//import SwiftUI
+//struct UIViewControllerPreview<TipsViewController: UIViewController>: UIViewControllerRepresentable {
+//    let viewController: TipsViewController
+//
+//    init(_ builder: @escaping () -> TipsViewController) {
+//        viewController = builder()
+//    }
+//    func makeUIViewController(context: Context) -> TipsViewController {
+//        viewController
+//    }
+//
+//    func updateUIViewController(_ uiViewController: TipsViewController, context: UIViewControllerRepresentableContext<UIViewControllerPreview<TipsViewController>>) {
+//        return
+//    }
+//}
+//#endif
+//
+//#if canImport(SwiftUI) && DEBUG
+//import SwiftUI
+//
+//let deviceNames: [String] = [
+//    "iPhone 11 Pro Max",
+//]
+//
+//@available(iOS 13.0, *)
+//struct ViewController_Preview: PreviewProvider {
+//  static var previews: some View {
+//    ForEach(deviceNames, id: \.self) { deviceName in
+//      UIViewControllerPreview {
+//          TipsViewController()
+//      }.previewDevice(PreviewDevice(rawValue: deviceName))
+//        .previewDisplayName(deviceName)
+//    }
+//  }
+//}
+//
+//#endif

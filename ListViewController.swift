@@ -26,6 +26,7 @@ class ListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.isNavigationBarHidden = true
         setupView()
         setupConstraints()
         generatePasswords()
@@ -34,6 +35,7 @@ class ListViewController: UIViewController {
     func setupView() {
         view.backgroundColor = mainColor
         title = "Total de senhas: \(numberOfPass)"
+
         passwordGenerator = PasswordGenerator(numberOfChar: numberOfChar, useLower: useLower, useUpper: useUpper, useNumber: useNumbers, useSpecialChar: useSpecialChar)
         
         passwordText = UITextView()
@@ -41,6 +43,7 @@ class ListViewController: UIViewController {
         passwordText.backgroundColor = .white
         passwordText.isEditable = false
         passwordText.isSelectable = true
+        passwordText.font = .systemFont(ofSize: 17)
         view.addSubview(passwordText)
         
         btGenerate = UIButton()
@@ -76,11 +79,11 @@ class ListViewController: UIViewController {
             
             btGenerate.centerXAnchor.constraint(equalTo: passwordText.centerXAnchor),
             btGenerate.topAnchor.constraint(equalTo: passwordText.bottomAnchor, constant: 35),
-            btGenerate.widthAnchor.constraint(equalToConstant: 250),
+            btGenerate.widthAnchor.constraint(equalToConstant: 280),
             btGenerate.heightAnchor.constraint(equalToConstant: 70),
             
-            tipsButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -15),
-            tipsButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            tipsButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -25),
+            tipsButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
         ])
     }
     
@@ -108,44 +111,3 @@ class ListViewController: UIViewController {
         }
     }
 }
-
-//// MARK: - Preview
-//
-//#if canImport(SwiftUI) && DEBUG
-//import SwiftUI
-//struct UIViewControllerPreview<ListViewController: UIViewController>: UIViewControllerRepresentable {
-//    let viewController: ListViewController
-//
-//    init(_ builder: @escaping () -> ListViewController) {
-//        viewController = builder()
-//    }
-//    func makeUIViewController(context: Context) -> ListViewController {
-//        viewController
-//    }
-//
-//    func updateUIViewController(_ uiViewController: ListViewController, context: UIViewControllerRepresentableContext<UIViewControllerPreview<ListViewController>>) {
-//        return
-//    }
-//}
-//#endif
-//
-//#if canImport(SwiftUI) && DEBUG
-//import SwiftUI
-//
-//let deviceNames: [String] = [
-//    "iPhone 11 Pro Max",
-//]
-//
-//@available(iOS 13.0, *)
-//struct ViewController_Preview: PreviewProvider {
-//  static var previews: some View {
-//    ForEach(deviceNames, id: \.self) { deviceName in
-//      UIViewControllerPreview {
-//          ListViewController()
-//      }.previewDevice(PreviewDevice(rawValue: deviceName))
-//        .previewDisplayName(deviceName)
-//    }
-//  }
-//}
-//
-//#endif

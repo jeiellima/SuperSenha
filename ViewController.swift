@@ -22,8 +22,9 @@ class ViewController: UIViewController {
     var lbSpecialChar: UILabel!
     var swSpecialChar: UISwitch!
     var btGenerate: UIButton!
-//    var topLabel: UILabel!
-
+    var topLabel: UILabel!
+    var topView: UIView!
+    var decorationImage: UIImageView!
 
     var mainColor = UIColor(red: 152.0/255.0, green: 36.0/255.0, blue: 101.0/255.0, alpha: 1)
     
@@ -36,14 +37,21 @@ class ViewController: UIViewController {
 
     func setupView() {
         
-//        topLabel = UILabel()
-//        topLabel.translatesAutoresizingMaskIntoConstraints = false
-//        topLabel.text = "Gerador de Senhas"
-//        topLabel.font = .systemFont(ofSize: 30)
-//        topLabel.backgroundColor = .red
-//        view.addSubview(topLabel)
-    
+        topView = UIView()
+        topView.translatesAutoresizingMaskIntoConstraints = false
+        topView.backgroundColor = mainColor
+        view.addSubview(topView)
         
+        topLabel = UILabel()
+        topLabel.translatesAutoresizingMaskIntoConstraints = false
+        topLabel.text = "Gerador de Senhas"
+        topLabel.textColor = .white
+        topLabel.font = .boldSystemFont(ofSize: 30)
+        view.addSubview(topLabel)
+    
+//        customTitleView.backgroundColor = .red
+//        customTitleView.translatesAutoresizingMaskIntoConstraints = false
+//        navigationItem.title = "Gerador de Senhas"
         
         lbPassAmount = UILabel()
         lbPassAmount.translatesAutoresizingMaskIntoConstraints = false
@@ -136,18 +144,34 @@ class ViewController: UIViewController {
         btGenerate.tag = 1
         btGenerate.layer.cornerRadius = 10
         view.addSubview(btGenerate)
+        
+        decorationImage = UIImageView()
+        decorationImage.translatesAutoresizingMaskIntoConstraints = false
+        decorationImage.image = UIImage(named: "lock")
+        decorationImage.alpha = 0.2
+        decorationImage.contentMode = .scaleAspectFill
+        view.addSubview(decorationImage)
+        
+        
     }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
             
-//            topLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            topLabel.heightAnchor.constraint(equalToConstant: 50),
-//            topLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
-//            topLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            topLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            topView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            topView.heightAnchor.constraint(equalToConstant: 130),
+            topView.topAnchor.constraint(equalTo: view.topAnchor),
+            topView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            topView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            lbPassAmount.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: 35),
+            topLabel.centerXAnchor.constraint(equalTo: topView.centerXAnchor),
+            topLabel.centerYAnchor.constraint(equalTo: topView.centerYAnchor, constant: 20),
+            
+//            customTitleView.widthAnchor.constraint(equalToConstant: 200),
+//            customTitleView.heightAnchor.constraint(equalToConstant: 40),
+//            customTitleView.topAnchor.constraint(equalTo: view.topAnchor),
+            
+            lbPassAmount.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: 35),
             lbPassAmount.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
             lbPassAmount.trailingAnchor.constraint(equalTo: tfPassAmount.leadingAnchor),
             
@@ -200,14 +224,20 @@ class ViewController: UIViewController {
             
             btGenerate.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             btGenerate.topAnchor.constraint(equalTo: lbSpecialChar.bottomAnchor, constant: 50),
-            btGenerate.widthAnchor.constraint(equalToConstant: 250),
-            btGenerate.heightAnchor.constraint(equalToConstant: 70)
+            btGenerate.widthAnchor.constraint(equalToConstant: 280),
+            btGenerate.heightAnchor.constraint(equalToConstant: 70),
+            
+            decorationImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            decorationImage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 20),
+            decorationImage.widthAnchor.constraint(equalToConstant: 250),
+            decorationImage.heightAnchor.constraint(equalToConstant: 250),
         ])
     }
     
     @objc func passGenerator(sender: UIButton!) {
         let btnsendtag: UIButton = sender
         if btnsendtag.tag == 1 {
+            
             let listViewController = ListViewController()
             navigationController?.pushViewController(listViewController, animated: true)
             
@@ -224,12 +254,13 @@ class ViewController: UIViewController {
             listViewController.useNumbers = swNumbers.isOn
             listViewController.useSpecialChar = swSpecialChar.isOn
             view.endEditing(true)
+            
         }
     }
 }
 
 //// MARK: - Preview
-//
+
 //#if canImport(SwiftUI) && DEBUG
 //import SwiftUI
 //struct UIViewControllerPreview<ViewController: UIViewController>: UIViewControllerRepresentable {
