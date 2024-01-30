@@ -22,10 +22,11 @@ class TipsViewController: UIViewController {
     
     func setupView() {
         
+        view.backgroundColor = .white
         topLabel = UILabel()
         topLabel.translatesAutoresizingMaskIntoConstraints = false
         topLabel.text = "10 dicas para ter uma senha forte"
-        topLabel.font = .systemFont(ofSize: 23)
+        topLabel.font = .boldSystemFont(ofSize: 23)
         topLabel.textColor = mainColor
         view.addSubview(topLabel)
         
@@ -62,9 +63,11 @@ class TipsViewController: UIViewController {
         10.  Se você achar que é difícil lembrar-se de várias senhas complexas, considere a instalação de um gerenciadores de senhas
         Há diversos programas disponíveis que armazenam os dados de maneira segura e ajudam os mais esquecidos.
         """
-        tipsTextView.textColor = .black
+        tipsTextView.textColor = .white
+        tipsTextView.backgroundColor = mainColor
         tipsTextView.font = .systemFont(ofSize: 18)
         tipsTextView.isEditable = false
+        tipsTextView.layer.cornerRadius = 10
         view.addSubview(tipsTextView)
         
         dismissButton = UIButton()
@@ -81,13 +84,13 @@ class TipsViewController: UIViewController {
         NSLayoutConstraint.activate([
             
             topLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            topLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 15),
+            topLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 35),
             
             tipsTextView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             tipsTextView.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: 20),
             tipsTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
             tipsTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
-            tipsTextView.bottomAnchor.constraint(equalTo: dismissButton.topAnchor, constant: -20),
+            tipsTextView.bottomAnchor.constraint(equalTo: dismissButton.topAnchor, constant: -30),
             
             dismissButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -35),
             dismissButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
@@ -102,44 +105,3 @@ class TipsViewController: UIViewController {
         }
     }
 }
-
-// MARK: - Preview
-
-//#if canImport(SwiftUI) && DEBUG
-//import SwiftUI
-//struct UIViewControllerPreview<TipsViewController: UIViewController>: UIViewControllerRepresentable {
-//    let viewController: TipsViewController
-//
-//    init(_ builder: @escaping () -> TipsViewController) {
-//        viewController = builder()
-//    }
-//    func makeUIViewController(context: Context) -> TipsViewController {
-//        viewController
-//    }
-//
-//    func updateUIViewController(_ uiViewController: TipsViewController, context: UIViewControllerRepresentableContext<UIViewControllerPreview<TipsViewController>>) {
-//        return
-//    }
-//}
-//#endif
-//
-//#if canImport(SwiftUI) && DEBUG
-//import SwiftUI
-//
-//let deviceNames: [String] = [
-//    "iPhone 11 Pro Max",
-//]
-//
-//@available(iOS 13.0, *)
-//struct ViewController_Preview: PreviewProvider {
-//  static var previews: some View {
-//    ForEach(deviceNames, id: \.self) { deviceName in
-//      UIViewControllerPreview {
-//          TipsViewController()
-//      }.previewDevice(PreviewDevice(rawValue: deviceName))
-//        .previewDisplayName(deviceName)
-//    }
-//  }
-//}
-//
-//#endif

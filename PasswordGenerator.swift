@@ -33,7 +33,7 @@ class PasswordGenerator {
     }
     
     func generate(total: Int) -> [String] {
-        //passwords.removeAll()
+        passwords.removeAll()
         var universe = ""
         
         if useLower {

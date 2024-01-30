@@ -46,6 +46,7 @@ class ListViewController: UIViewController {
         passwordText.isSelectable = true
         passwordText.font = .systemFont(ofSize: 20)
         passwordText.layer.cornerRadius = 9
+        passwordText.scrollRangeToVisible(NSRange(location: 0, length: 0))
         view.addSubview(passwordText)
         
         btGenerate = UIButton()
@@ -109,6 +110,7 @@ class ListViewController: UIViewController {
         let btnsendtag: UIButton = sender
         if btnsendtag.tag == 1 {
             let tipsViewController = TipsViewController()
+            tipsViewController.modalPresentationStyle = .fullScreen
             navigationController?.present(tipsViewController, animated: true, completion: nil)
         }
     }

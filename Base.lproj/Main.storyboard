@@ -20,7 +20,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="OPH-B0-bIw">
-                        <barButtonItem key="backBarButtonItem" title="Gerador de Senhas" id="xtk-u8-eoE"/>
+                        <barButtonItem key="backBarButtonItem" title="Editar" id="xtk-u8-eoE"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
