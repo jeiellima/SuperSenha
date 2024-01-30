@@ -26,7 +26,8 @@ class ListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.isNavigationBarHidden = true
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: mainColor]
+        tabBarController?.tabBar.tintColor = UIColor.yellow
         setupView()
         setupConstraints()
         generatePasswords()
@@ -43,7 +44,8 @@ class ListViewController: UIViewController {
         passwordText.backgroundColor = .white
         passwordText.isEditable = false
         passwordText.isSelectable = true
-        passwordText.font = .systemFont(ofSize: 17)
+        passwordText.font = .systemFont(ofSize: 20)
+        passwordText.layer.cornerRadius = 9
         view.addSubview(passwordText)
         
         btGenerate = UIButton()
@@ -82,12 +84,14 @@ class ListViewController: UIViewController {
             btGenerate.widthAnchor.constraint(equalToConstant: 280),
             btGenerate.heightAnchor.constraint(equalToConstant: 70),
             
-            tipsButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -25),
+            tipsButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -35),
             tipsButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
         ])
     }
     
     func generatePasswords() {
+        passwordText.scrollRangeToVisible(NSRange(location: 0, length: 0))
+        passwordText.text = ""
         let passwords = passwordGenerator.generate(total: numberOfPass)
         for password in passwords {
             passwordText.text.append(password + "\n\n")
@@ -97,8 +101,6 @@ class ListViewController: UIViewController {
     @objc func generate(sender: UIButton!) {
         let btnsendtag: UIButton = sender
         if btnsendtag.tag == 1 {
-            passwordText.scrollsToTop = true
-            passwordText.text = ""
             generatePasswords()
         }
     }

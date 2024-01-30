@@ -64,12 +64,14 @@ class TipsViewController: UIViewController {
         """
         tipsTextView.textColor = .black
         tipsTextView.font = .systemFont(ofSize: 18)
+        tipsTextView.isEditable = false
         view.addSubview(tipsTextView)
         
         dismissButton = UIButton()
         dismissButton.translatesAutoresizingMaskIntoConstraints = false
         dismissButton.setTitle("fechar", for: .normal)
         dismissButton.setTitleColor(mainColor, for: .normal)
+        dismissButton.tag = 1
         dismissButton.addTarget(self, action: #selector(close), for: .touchUpInside)
         view.addSubview(dismissButton)
         
@@ -87,7 +89,7 @@ class TipsViewController: UIViewController {
             tipsTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
             tipsTextView.bottomAnchor.constraint(equalTo: dismissButton.topAnchor, constant: -20),
             
-            dismissButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -5),
+            dismissButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -35),
             dismissButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
  
         ])
